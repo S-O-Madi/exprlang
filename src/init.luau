@@ -563,41 +563,22 @@ local instance: self = setmetatable({
 -- Built-in Functions
 --==================================================
 
-instance:Register("ADD", function(a: number, b: number)
-	return a + b
-end)
-
-instance:Register("SUB", function(a: number, b: number)
-	return a - b
-end)
-
-instance:Register("MUL", function(a: number, b: number)
-	return a * b
-end)
-
-instance:Register("DIV", function(a: number, b: number)
-	if b == 0 then
-		BuiltError.DivByZero()
-	end
-	return a / b
-end)
-
-instance:Register("POW", function(a: number, b: number)
-	return a ^ b
-end)
-
-instance:Register("FLOORDIV", function(a:number, b:number)
-	if b == 0 then
-		BuiltError.DivByZero()
-	end
-
-	return a // b
-end)
-
+-- ARITHMETIC
+instance:Register("ADD", function(a: number, b: number) return a + b end)
+instance:Register("SUB", function(a: number, b: number) return a - b end)
+instance:Register("MUL", function(a: number, b: number) return a * b end)
+instance:Register("DIV", function(a: number, b: number) if b == 0 then BuiltError.DivByZero() end; return a / b end)
+instance:Register("FLOORDIV", function(a:number, b:number) if b == 0 then BuiltError.DivByZero() end; return a // b end)
+instance:Register("MOD", function(a:number, b:number) if b == 0 then BuiltError.DivByZero() end; return a % b end)
+instance:Register("NEG", function(a:number) return -a end)
+instance:Register("POW", function(a: number, b: number) return a ^ b end)
+instance:Register("CLAMP", function(a:number, b:number, c:number) return math.clamp(a, b, c) end)
 instance:Register("MIN", math.min)
 instance:Register("MAX", math.max)
 instance:Register("ABS", math.abs)
 
+-- STRING MANIPULATIONS
+instance:Register("LENSTR", function(a:string) return a:len() end)
 instance:Register("CONCAT", function(...: any)
 	local parts = { ... }
 	local strs = table.create(#parts)
@@ -607,37 +588,18 @@ instance:Register("CONCAT", function(...: any)
 	return table.concat(strs)
 end)
 
---==================================================
--- Comparison built-ins
---==================================================
+-- COMPARISON
 --[[ 
 	NOTE: IF / AND / OR / NOT are NOT registered here - they are handled as special AST nodes in Execute() 
 	for short-circuit / lazy evaluation
 	(so IF(cond, EXPENSIVE(), 0) doesn't run EXPENSIVE() when cond is false).
 ]]
-	
-instance:Register("EQ", function(a: any, b: any)
-	return a == b
-end)
 
-instance:Register("NEQ", function(a: any, b: any)
-	return a ~= b
-end)
-
-instance:Register("LT", function(a: number, b: number)
-	return a < b
-end)
-
-instance:Register("GT", function(a: number, b: number)
-	return a > b
-end)
-
-instance:Register("LTE", function(a: number, b: number)
-	return a <= b
-end)
-
-instance:Register("GTE", function(a: number, b: number)
-	return a >= b
-end)
+instance:Register("EQ", function(a: any, b: any) return a == b end)
+instance:Register("NEQ", function(a: any, b: any) return a ~= b end)
+instance:Register("LT", function(a: number, b: number) return a < b end)
+instance:Register("GT", function(a: number, b: number) return a > b end)
+instance:Register("LTE", function(a: number, b: number) return a <= b end)
+instance:Register("GTE", function(a: number, b: number) return a >= b end)
 
 return instance
