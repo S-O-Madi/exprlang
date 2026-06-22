@@ -1,0 +1,27 @@
+# Max line length. Lines may fall under or over the limit.
+column_width = 100
+
+# Line endings: "Unix" (LF) or "Windows" (CRLF).
+line_endings = "Unix"
+
+# Indentation: "Spaces" or "Tabs".
+indent_type = "Tabs"
+
+# Number of spaces/tabs for indentation.
+indent_width = 2
+
+# String quote style: "AutoPreferSingle", "AutoPreferDouble", "ForceSingle", or "ForceDouble".
+quote_style = "AutoPreferDouble"
+
+# Parentheses in function calls: "None", "Always", "Remove", "NoSingleString", or "NoSingleTable".
+call_parentheses = "Always"
+
+# Collapse simple statements: "Always" or "Never"
+collapse_simple_statement = "Always"
+
+# Specify the Lua syntax version (e.g., "Lua51", "LuaJIT") if needed.
+syntax = "Lua51"
+
+# [sort_requires] section for sorting require statements
+[sort_requires]
+enabled = true

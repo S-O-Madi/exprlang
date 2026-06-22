@@ -1,0 +1,10 @@
+[package]
+name = "s-o-madi/exprlang"
+version = "0.1.1"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+license = "MIT"
+description = "A lightweight ASM-DSL engine for evaluating string-based expressions."
+exclude = ["aftman.toml", "CHANGELOG.md"]
+
+[dependencies]
